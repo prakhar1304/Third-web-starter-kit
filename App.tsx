@@ -12,11 +12,12 @@ import React from 'react';
 import {StyleSheet, Text, useColorScheme, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {TW_CLIENT_ID} from '@env';
+import StackNavigator from './src/Navigation/StackNavigator';
 
 const App = () => {
   return (
     <ThirdwebProvider
-      activeChain="mumbai"
+      activeChain= "mumbai"
       clientId={TW_CLIENT_ID}
       supportedWallets={[
         metamaskWallet({
@@ -39,26 +40,12 @@ const App = () => {
         trustWallet(),
         localWallet(),
       ]}>
-      <AppInner />
+      <StackNavigator />
     </ThirdwebProvider>
   );
 };
 
-const AppInner = () => {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const textStyles = {
-    color: isDarkMode ? Colors.white : Colors.black,
-    ...styles.heading,
-  };
-
-  return (
-    <View style={styles.view}>
-      <Text style={textStyles}>React Native thirdweb starter</Text>
-      <ConnectWallet />
-    </View>
-  );
-};
 
 const styles = StyleSheet.create({
   view: {
